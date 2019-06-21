@@ -1,0 +1,80 @@
+{
+  "name": "rnboilerts",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "lint": "tslint --project tsconfig.json",
+    "android": "node_modules/.bin/react-native run-android",
+    "ios": "node node_modules/.bin/react-native run-ios",
+    "storybook": "node ./node_modules/.bin/start-storybook -p 7007",
+    "storybook-env": "cp ./environments/storybook.js ./config/environment.js",
+    "production-env": "cp ./environments/production.js ./config/environment.js",
+    "development-env": "cp ./environments/development.js ./config/environment.js"
+  },
+  "dependencies": {
+    "react": "16.8.6",
+    "react-native": "0.59.9",
+    "react-native-gesture-handler": "^1.3.0",
+    "react-navigation": "^3.11.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-info": "^5.1.9",
+    "@storybook/addon-links": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
+    "@storybook/preset-typescript": "^1.1.0",
+    "@storybook/react-native": "^5.1.9",
+    "@storybook/react-native-server": "^5.1.9",
+    "@storybook/theming": "^5.1.9",
+    "@types/enzyme": "^3.9.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.15",
+    "@types/react": "^16.8.22",
+    "@types/react-native": "^0.57.63",
+    "@types/react-test-renderer": "^16.8.2",
+    "@types/storybook__react": "^4.0.2",
+    "babel-jest": "^24.8.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.54.1",
+    "react-docgen-typescript-loader": "^3.1.0",
+    "react-dom": "^16.8.6",
+    "react-native-testing-library": "^1.9.1",
+    "react-test-renderer": "16.8.6",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.5.2"
+  },
+  "jest": {
+    "preset": "react-native",
+    "collectCoverage": true,
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.jest.json"
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "setupFiles": [
+      "<rootDir>/config/jest.setup.js"
+    ]
+  }
+}
