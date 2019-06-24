@@ -1,13 +1,16 @@
-import env from 'react-native-config'
+import env from 'react-native-config';
 
 const config = {
   api: {
     host: env.API_HOST,
     timeout: 20000,
   },
-}
-const AIP_HOST = config.api.host
+  storybook: env.STORYBOOK,
+};
 
-export { API_HOST }
+const API_URL = config.api.host;
+const STORYBOOK = config.storybook;
 
-export default config
+export { API_URL, STORYBOOK };
+
+export default config;

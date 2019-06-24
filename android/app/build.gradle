@@ -1,4 +1,11 @@
+project.ext.envConfigFiles = [
+    debug: ".env",
+    release: ".env",
+    productionrelease: ".env.production"
+]
+
 apply plugin: "com.android.application"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
@@ -103,7 +110,6 @@ android {
 
     defaultConfig {
         applicationId "com.rnboilerts"
-        apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -121,6 +127,12 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+        debug {
+            debuggable true
+        }
+        productionrelease {
+            initWith release
         }
     }
     // applicationVariants are e.g. debug, release
