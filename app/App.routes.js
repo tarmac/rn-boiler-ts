@@ -4,18 +4,15 @@ import {
   createSwitchNavigator,
 } from 'react-navigation';
 
-// Config
-import { STORYBOOK } from '../config';
+import Config from 'react-native-config';
 
 // Screens
 import StorybookUI from '../storybook';
 import RootScreen from './screens/root';
 
-console.log(STORYBOOK);
-
 // Stacks
 const RootStack =
-  STORYBOOK === true
+  Config.STORYBOOK === 'true'
     ? createStackNavigator({
         StorybookUI,
       })

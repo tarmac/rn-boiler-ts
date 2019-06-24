@@ -8,10 +8,11 @@
     "android": "node node_modules/.bin/react-native run-android",
     "ios": "node node_modules/.bin/react-native run-ios",
     "storybook": "node ./node_modules/.bin/start-storybook -p 7007",
-    "start": "ENVFILE=.env.development ./node_modules/.bin/react-native start --reset-cache",
-    "start-prod": "ENVFILE=.env.production ./node_modules/.bin/react-native start --reset-cache",
-    "start-storybook": "ENVFILE=.env.storybook ./node_modules/.bin/react-native start --reset-cache",
-    "build-android-prod": "export ENVFILE=.env.production && cd android && ./gradlew assembleRelease && cd .."
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android-dev": "ENVFILE=./environments/.env.dev react-native run-android",
+    "android-prod": "ENVFILE=./environments/.env.prod react-native run-android",
+    "android-storybook": "ENVFILE=./environments/.env.storybook react-native run-android",
+    "build-android-prod": "export ENVFILE=./environments/.env.prod && cd android && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
     "react": "16.8.6",
