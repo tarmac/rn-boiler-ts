@@ -1,0 +1,173 @@
+version: 2
+jobs:
+  node:
+    working_directory: ~/react-native
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+
+      - restore_cache:
+        key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+
+      - restore_cache:
+        key: yarn-v1-{{ checksum "package.json" }}-{{ arch }}
+
+      - run: yarn install
+
+      - save_cache:
+        key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+        paths:
+          - node_modules
+
+      - run:
+        name: lint
+        command: |
+          yarn run lint
+      - run:
+        name: jest tests
+        command: |
+          mkdir -p test-results/jest
+          yarn run test -w 2
+        environment:
+          JEST_JUNIT_OUTPUT: test-results/jest/junit.xml
+
+      - persist_to_workspace:
+        root: ~/react-native
+        paths:
+          - node_modules
+
+      - store_test_results:
+        path: test-results
+
+      - store-artifacts:
+        path: test-results
+
+  android:
+    working_directory: ~/react-native
+    docker:
+      - image: circleci/android:api-27-node8-alpha
+    steps:
+      - checkout:
+          path: ~/react-native
+
+      - attach_workspace:
+          at: ~/react-native
+
+      - restore_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+
+      - run:
+          name: bundle install
+          command: bundle install
+          working_directory: android
+
+      - save_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Install react-native-cli
+          command: yarn add react-native-cli
+
+      - run:
+          name: Create a main.jsbundle
+          command: node ./node_modules/react-native-cli/index.js bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+
+      - run:
+          name: Build and Deploy
+          command: fastlane beta
+          working_directory: android
+
+  ios:
+    macos:
+      xcode: '9.0'
+    working_directory: ~/react-native
+
+    # use a --login shell so our "set Ruby version" command gets picked up for later steps
+    shell: /bin/bash --login -o pipefail
+
+    steps:
+      - checkout
+
+      - run:
+          name: set Ruby version
+          command: echo "ruby-2.4" > ~/.ruby-version
+
+      - restore_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+
+      - restore_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+
+      # not using a workspace here as Node and Yarn versions
+      # differ between our macOS executor image and the Docker containers above
+      - run: yarn install
+
+      - save_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+          paths:
+            - ~/.cache/yarn
+
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
+
+      - restore_cache:
+          key: bundle-v1-{{ checksum "ios/Gemfile.lock" }}-{{ arch }}
+
+      - run:
+          command: bundle install
+          working_directory: ios
+
+      - save_cache:
+          key: bundle-v1-{{ checksum "ios/Gemfile.lock" }}-{{ arch }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: decode Certificates
+          context: org-global
+          command: base64 -D -o ~/react-native/ios/Certificates.p12 <<< $DISTRIBUTION_KEY
+
+      - run:
+          name: make Provisioning Profiles directory
+          command: mkdir -pv ~/Library/MobileDevice/Provisioning\ Profiles/
+
+      - run:
+          name: decode Provisioning Profiles
+          context: org-global
+          command: base64 -D -o ~/Library/MobileDevice/Provisioning\ Profiles/App_Store.mobileprovision <<< $PROVISIONING_PROFILE
+
+      - run:
+          name: Install react-native-cli
+          command: yarn add react-native-cli
+
+      - run:
+          name: Create a main.jsbundle
+          command: node ./node_modules/react-native-cli/index.js bundle --dev false --platform ios --entry-file ./index.js --bundle-output ./ios/<PLACE_APP_NAME>/main.jsbundle --assets-dest=./ios
+
+      - run:
+          name: Build sign and deploy
+          working_directory: ios
+          no_output_timeout: 30m
+          command: bundle exec fastlane beta --verbose
+
+workflows:
+  version: 2
+  node-android-ios:
+    jobs:
+      - node
+      - ios:
+          requires:
+            - node
+          filters:
+            branches:
+              only: master
+      - android:
+          requires:
+            - node
+          filters:
+            branches:
+only: master

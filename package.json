@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "lint": "eslint 'app/**/*.{ts,tsx}'",
+    "renameApp": "node_modules/.bin/react-native-rename",
     "test": "jest",
     "android": "node node_modules/.bin/react-native run-android",
     "ios": "node node_modules/.bin/react-native run-ios",
@@ -62,6 +64,7 @@
     "pretty-quick": "^1.11.1",
     "react-docgen-typescript-loader": "^3.1.0",
     "react-dom": "^16.8.6",
+    "react-native-rename": "^2.4.1",
     "react-native-testing-library": "^1.9.1",
     "react-test-renderer": "16.8.6",
     "redux-devtools": "^3.5.0",
