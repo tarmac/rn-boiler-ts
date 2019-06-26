@@ -28,8 +28,8 @@ const RootNavigator = createAppContainer(
     },
     {
       initialRouteName: 'Root',
-    }
-  )
+    },
+  ),
 );
 
 export default RootNavigator;

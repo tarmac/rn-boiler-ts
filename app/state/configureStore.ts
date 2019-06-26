@@ -30,7 +30,11 @@ export default function configureStore(initialState = {}) {
 
   middlewares.push(sagaMiddleware);
 
-  store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(...middlewares)));
+  store = createStore(
+    rootReducer,
+    initialState,
+    composeEnhancers(applyMiddleware(...middlewares)),
+  );
 
   sagaMiddleware.run(rootSaga);
 
