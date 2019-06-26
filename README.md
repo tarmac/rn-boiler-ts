@@ -3,14 +3,13 @@
 ## Tech stack
 
 - [react-native >= 0.59](https://facebook.github.io/react-native/)
-- [styled-components](https://www.styled-components.com/)
 - [redux](https://redux.js.org/)
 - [redux-saga](https://redux-saga.js.org/)
-- [redux-persist](https://github.com/rt2zz/redux-persist)
 - [jest](https://jestjs.io/)
 - [enzyme](https://airbnb.io/enzyme/)
 - [eslint](https://eslint.org/)
 - [storybook](https://storybook.js.org/docs/guides/guide-react-native/)
+- [react-navitagion](https://reactnavigation.org/docs/en/getting-started.html)
 
 ## Project Architecture.
 
@@ -68,17 +67,17 @@ _ _duck.ts (Required)
 _NOTE_: The environment for this was done with macOS 10.14.X
 
 - Node >= 10 (LTS)
-- yarn _THE WHOLE ENVIRONMENT RUN THANKS TO YARN, USE IT!!!!_
-- watchman
-- xcode
-- android studio
+- NPM or Yarn (Optional)
+- Watchman
+- Xcode
+- Android Studio
 
 ## How to start the boilerplate
 
 - Clone this repo:
 
 ```
-$> git clone https://github.com/tarmac/RN-Boilerplate
+$> git clone https://github.com/tarmac/RN-Boiler-TS
 ```
 
 - Inside the project run:
@@ -87,7 +86,7 @@ $> git clone https://github.com/tarmac/RN-Boilerplate
 $> rm -rf .git/
 $> git init
 $> yarn
-$> yarn renameApp <newNameOfTheApp> -b "com.[company].[project]"
+$> yarn renameApp <newNameOfTheApp> -b "[domain].[company].[project]"
 ```
 
 - open `.circleci/config.yml` and replace on `line 156`
@@ -97,26 +96,26 @@ $> yarn renameApp <newNameOfTheApp> -b "com.[company].[project]"
 
 #### android
 
-```
-$> yarn android
-```
-
-#### iOS
+##### Development
 
 ```
-$> yarn ios
+$> yarn android-dev
+```
+
+##### Storybook
+
+```
+$> yarn android-storybook
 ```
 
 _NOTE_: It's automatically start the metro server.
 
-### Contribute
+#### iOS
 
-This is an initial step into structure a solid Boilerplate for react-native,it's important to consider
-that the _only_ opiniated part of this project is the directory structure, that means if you want to change
-[react-navigation](https://reactnavigation.org/) for [react-native-navigation](https://wix.github.io/react-native-navigation/#/)
-or [redux-persist](https://github.com/rt2zz/redux-persist) for [realm](https://realm.io/) you should be able to
-do it without too much struggle.
+You must run a clean version from XCode.
+
+### Contribute
 
 Please contribute with ideas on GH issues or create PR to improve this repo.
 
-Thanks
+Thanks.
