@@ -1,9 +1,8 @@
 import { AppRegistry } from 'react-native';
 import App from './app/App';
 import { name as appName } from './app.json';
-import Config from 'react-native-config';
+import { YellowBox } from 'react-native';
 
-Config.API_HOST;
-Config.STORYBOOK;
+YellowBox.ignoreWarnings(['Warning: Async Storage has been extracted from react-native core']);
 
 AppRegistry.registerComponent(appName, () => App);
