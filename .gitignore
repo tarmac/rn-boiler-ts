@@ -67,3 +67,11 @@ coverage/
 # Environments
 #
 .env
+!environments/.env.template
+!environments/README.md
+environments/.env.dev
+environments/.env.storybook
+
+
+# Cocoapods
+ios/Pods/

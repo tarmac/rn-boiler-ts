@@ -112,7 +112,7 @@ _NOTE_: It's automatically start the metro server.
 
 #### iOS
 
-You must open up the project in Xcode (CocoaPods version `*.xcworkspace`), select the correct scheme (95% of the time it’s Dev), press play.
+You must run a clean version from XCode.
 
 ### Contribute
 

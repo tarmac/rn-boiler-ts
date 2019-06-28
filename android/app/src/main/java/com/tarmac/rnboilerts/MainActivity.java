@@ -1,4 +1,4 @@
-package com.rnboilerts;
+package com.tarmac.rnboilerts;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

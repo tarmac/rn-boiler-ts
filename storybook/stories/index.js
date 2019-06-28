@@ -6,4 +6,6 @@ import { linkTo } from '@storybook/addon-links';
 
 import CenterView from './CenterView';
 
-storiesOf('Button', module).addDecorator(getStory => <CenterView>{getStory()}</CenterView>);
+storiesOf('Button', module).addDecorator(getStory => (
+  <CenterView>{getStory()}</CenterView>
+));
