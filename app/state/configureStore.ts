@@ -1,6 +1,8 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, Store } from 'redux';
 import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
+import { persistStore, persistReducer, Persistor } from 'redux-persist';
+import storage from '@react-native-community/async-storage';
 
 // Reducers & Sagas
 import rootReducer from './rootReducer';
@@ -20,9 +22,18 @@ const logger = createLogger({
   collapsed: true,
 });
 
-export default function configureStore(initialState = {}) {
-  let store;
+// By default, all store is saved in async storage.
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+let store: Store;
+let persistor: Persistor;
+
+export default function configureStore(initialState = {}): void {
   const middlewares = [];
+  const persistedReducer = persistReducer(persistConfig, rootReducer);
 
   if (__DEV__) {
     middlewares.push(logger);
@@ -31,12 +42,13 @@ export default function configureStore(initialState = {}) {
   middlewares.push(sagaMiddleware);
 
   store = createStore(
-    rootReducer,
+    persistedReducer,
     initialState,
     composeEnhancers(applyMiddleware(...middlewares)),
   );
 
+  persistor = persistStore(store);
   sagaMiddleware.run(rootSaga);
-
-  return { store };
 }
+
+export { store, persistor };

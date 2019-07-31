@@ -18,6 +18,9 @@ module.exports = {
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/interface-name-prefix': 0,
+    '@typescript-eslint/no-empty-interface': 0,
   },
   settings: {
     react: {

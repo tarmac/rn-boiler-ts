@@ -1,19 +1,27 @@
-import React, { ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
+import NavigationService from './routes/services/navigation';
 
 // Redux
 import { Provider } from 'react-redux';
-import configureStore from './state/configureStore';
+import { PersistGate } from 'redux-persist/integration/react';
+import configureStore, { store, persistor } from './state/configureStore';
 
 // Redux store configuration
 const initialState = {};
-const { store } = configureStore(initialState);
+configureStore(initialState);
 
 // Router
-import RootNavigator from './App.routes';
+import RootNavigator from './routes';
 
-const App = (): ReactElement => (
+const App: FC<{}> = (): ReactElement => (
   <Provider store={store}>
-    <RootNavigator />
+    <PersistGate loading={null} persistor={persistor}>
+      <RootNavigator
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    </PersistGate>
   </Provider>
 );
 
