@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_rnboilerts : NSObject
+@interface PodsDummy_Pods_RnBoilerTs : NSObject
 @end
-@implementation PodsDummy_Pods_rnboilerts
+@implementation PodsDummy_Pods_RnBoilerTs
 @end

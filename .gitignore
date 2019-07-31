@@ -43,7 +43,6 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-*.keystore
 
 # fastlane
 #
@@ -71,6 +70,7 @@ coverage/
 !environments/README.md
 environments/.env.dev
 environments/.env.storybook
+environments/.env.prod
 
 
 # Cocoapods

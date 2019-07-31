@@ -10,7 +10,9 @@
     "noEmit": true,
     "strict": true,
     "target": "esnext",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "module": "commonjs",
+    "strictNullChecks": false
   },
   "exclude": [
     "node_modules",

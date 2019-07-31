@@ -10,6 +10,7 @@
 - [eslint](https://eslint.org/)
 - [storybook](https://storybook.js.org/docs/guides/guide-react-native/)
 - [react-navitagion](https://reactnavigation.org/docs/en/getting-started.html)
+- [styled-components](https://www.styled-components.com/)
 
 ## Project Architecture.
 
@@ -86,7 +87,7 @@ $> git clone https://github.com/tarmac/RN-Boiler-TS
 $> rm -rf .git/
 $> git init
 $> yarn
-$> yarn renameApp <newNameOfTheApp> -b "[domain].[company].[project]"
+$> yarn renameApp <NewNameOfTheApp> -b "[domain].[company].[project]"
 ```
 
 - open `.circleci/config.yml` and replace on `line 156`

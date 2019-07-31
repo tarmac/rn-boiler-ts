@@ -7,8 +7,8 @@ import {
 import Config from 'react-native-config';
 
 // Screens
-import StorybookUI from '../storybook';
-import RootScreen from './screens/root';
+import StorybookUI from '../../storybook';
+import FooScreen from '../screens/Foo';
 
 // Stacks
 const RootStack =
@@ -17,7 +17,7 @@ const RootStack =
         StorybookUI,
       })
     : createStackNavigator({
-        RootScreen,
+        FooScreen,
       });
 
 // Navigator Definition
