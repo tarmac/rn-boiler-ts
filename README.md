@@ -2,7 +2,8 @@
 
 ## Tech stack
 
-- [react-native >= 0.59](https://facebook.github.io/react-native/)
+- [react-native >= 0.60.4](https://facebook.github.io/react-native/)
+- [TypeScript >= 3.5](https://www.typescriptlang.org/)
 - [redux](https://redux.js.org/)
 - [redux-saga](https://redux-saga.js.org/)
 - [jest](https://jestjs.io/)
@@ -12,9 +13,19 @@
 - [react-navitagion](https://reactnavigation.org/docs/en/getting-started.html)
 - [styled-components](https://www.styled-components.com/)
 
-## Project Architecture.
+## Requirements
 
-#### Dir Structure:
+_NOTE_: The environment for this was done with macOS 10.14.X
+
+- Node >= 10 (LTS)
+- NPM or Yarn (Optional)
+- Watchman
+- XCode
+- Android Studio
+
+## Project Architecture
+
+### Dir Structure
 
 All code of the app exist into the `app` directory, all files or folders outside of this directory are configuration files except the android and ios directories.
 
@@ -23,26 +34,23 @@ All code of the app exist into the `app` directory, all files or folders outside
 - ios/
 - app/
     - assets/
-    - common/
-        - http/
-        - utils/
     - components/
-        - component1/
-            - index.ts
-        - component2/
-    - views/
-        view1/
-          - index.ts
-          - _screen.ts
+    - routes/
+    - screens/
     - state/
-        - module1/
-        - module2/
+    - App.tsx
+- common/
+    - http/
+    - utils/
 - config/
+- declarations/
+- environments/
+- storybook/
 ```
 
 The Redux Store it's contained under the `state` directory, into of this must exist a directory for each module in the store with some minimal files and others optional.
 
-#### Redux Architecture:
+### Redux Architecture
 
 In a module of the state, must exist some minimal files and others optionals:
 
@@ -63,60 +71,52 @@ _ _duck.ts (Required)
 - **reducer**: Definitions of mutations in the state using the actions creators defined in the types.
 - **types**: Definitions of types of actions possibles in the state.
 
-## Requirements.
+### Environments
 
-_NOTE_: The environment for this was done with macOS 10.14.X
+You should create minimal two `.env.*` files in the `environments` directory.
 
-- Node >= 10 (LTS)
-- NPM or Yarn (Optional)
-- Watchman
-- Xcode
-- Android Studio
+- `.env.dev`
+- `.env.storybook`
+
+In these you should replicate the vars in the file `.env.template` with the correct values.
 
 ## How to start the boilerplate
 
-- Clone this repo:
+- Clone this repository:
 
-```
+``` bash
 $> git clone https://github.com/tarmac/RN-Boiler-TS
 ```
 
 - Inside the project run:
 
-```
+``` bash
 $> rm -rf .git/
 $> git init
 $> yarn
 $> yarn renameApp <NewNameOfTheApp> -b "[domain].[company].[project]"
 ```
 
-- open `.circleci/config.yml` and replace on `line 156`
-  `<PLACE_APP_NAME>` to the projectName you use.
+### Android & iOS
 
-## dev
+#### Development
 
-#### android
+The platform in the command bellow must be one of `android` or `ios`
 
-##### Development
-
-```
-$> yarn android-dev
+``` bash
+$> yarn [platform]-dev
 ```
 
-##### Storybook
+#### Storybook
 
-```
-$> yarn android-storybook
+``` bash
+$> yarn [platform]-storybook
 ```
 
 _NOTE_: It's automatically start the metro server.
 
-#### iOS
+## Contribute
 
-You must run a clean version from XCode.
-
-### Contribute
-
-Please contribute with ideas on GH issues or create PR to improve this repo.
+Please contribute with ideas on GH issues or create PR to improve this repository.
 
 Thanks.

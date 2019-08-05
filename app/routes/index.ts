@@ -16,9 +16,16 @@ const RootStack =
     ? createStackNavigator({
         StorybookUI,
       })
-    : createStackNavigator({
-        FooScreen,
-      });
+    : createStackNavigator(
+        {
+          FooScreen,
+        },
+        {
+          defaultNavigationOptions: () => ({
+            header: null,
+          }),
+        },
+      );
 
 // Navigator Definition
 const RootNavigator = createAppContainer(

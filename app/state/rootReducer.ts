@@ -1,6 +1,8 @@
-import { combineReducers } from 'redux';
+import { combineReducers, Action } from 'redux';
 import * as types from './root/types';
-import { Action } from './root/_interfaces';
+
+// Definitions
+import { State } from './_definitions';
 
 // Reducers
 import root from './root';
@@ -9,7 +11,7 @@ const appReducer = combineReducers({
   root,
 });
 
-const rootReducer = (state: any, action: Action) => {
+const rootReducer = (state: State, action: Action) => {
   if (action.type === types.STORE_RESET) {
     state = undefined;
   }
