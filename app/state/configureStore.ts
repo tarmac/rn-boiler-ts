@@ -16,6 +16,8 @@ declare global {
 }
 
 // Initializations
+let store: Store;
+let persistor: Persistor;
 const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const logger = createLogger({
@@ -27,9 +29,6 @@ const persistConfig = {
   key: 'root',
   storage,
 };
-
-let store: Store;
-let persistor: Persistor;
 
 export default function configureStore(initialState = {}): void {
   const middlewares = [];
