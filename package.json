@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/runtime": "^7.4.5",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-info": "^5.1.9",
@@ -58,6 +59,7 @@
     "@typescript-eslint/parser": "^1.11.0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-inline-import": "^3.0.0",
     "babel-plugin-styled-components": "^1.10.4",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "enzyme": "^3.10.0",
