@@ -4,7 +4,7 @@ module.exports = {
     [
       'babel-plugin-inline-import',
       {
-        extensions: ['.xml', '.svg'],
+        extensions: ['.xml', '.svg', '.json'],
       },
     ],
     [
