@@ -2,15 +2,17 @@
 
 ## Tech stack
 
-- [react-native >= 0.60.4](https://facebook.github.io/react-native/)
-- [TypeScript >= 3.5](https://www.typescriptlang.org/)
+- [react 16.9.0](https://facebook.github.io/react-native/)
+- [react-native 0.60.5](https://facebook.github.io/react-native/)
+- [typeScript 3.6.3](https://www.typescriptlang.org/)
 - [redux](https://redux.js.org/)
 - [redux-saga](https://redux-saga.js.org/)
+- [redux-ducks-ts](https://github.com/atasanchez/redux-ducks-ts/)
 - [jest](https://jestjs.io/)
 - [enzyme](https://airbnb.io/enzyme/)
 - [eslint](https://eslint.org/)
 - [storybook](https://storybook.js.org/docs/guides/guide-react-native/)
-- [react-navitagion](https://reactnavigation.org/docs/en/getting-started.html)
+- [react-navigation](https://reactnavigation.org/docs/en/getting-started.html)
 - [styled-components](https://www.styled-components.com/)
 
 ## Requirements
@@ -84,13 +86,13 @@ In these you should replicate the vars in the file `.env.template` with the corr
 
 - Clone this repository:
 
-``` bash
-$> git clone https://github.com/tarmac/RN-Boiler-TS
+```bash
+$> git clone https://github.com/tarmac/rn-boiler-ts
 ```
 
 - Inside the project run:
 
-``` bash
+```bash
 $> rm -rf .git/
 $> git init
 $> yarn
@@ -103,14 +105,14 @@ $> yarn renameApp <NewNameOfTheApp> -b "[domain].[company].[project]"
 
 The platform in the command bellow must be one of `android` or `ios`
 
-``` bash
-$> yarn [platform]-dev
+```bash
+$> yarn run:[platform]
 ```
 
 #### Storybook
 
-``` bash
-$> yarn [platform]-storybook
+```bash
+$> yarn run:[platform]-storybook
 ```
 
 _NOTE_: It's automatically start the metro server.
